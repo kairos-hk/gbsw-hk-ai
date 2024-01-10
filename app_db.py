@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify, render_template
+from flask_cors import CORS
 from PIL import Image
 import requests
 import io
@@ -8,6 +9,7 @@ from keras.models import load_model
 from pymongo import MongoClient
 
 app = Flask(__name__)
+CORS(app)
 
 model = load_model("keras_Model.h5", compile=False)
 class_names = open("labels.txt", "r").readlines()
